@@ -2,10 +2,10 @@
  * Modul: Algorithmen und Datenstrukturen im SoSe 2025
  * Gruppe <NR>
  * Praktikum 1
- * Datum: <AbgabeDatum>
- * Version <z.B. 0.1>
+ * Datum: 04.05.2035
+ * Version 1.0
  * Klasse "Circle" zur Darstellung eines Kreises durch den Mittelpunkt (x|y) und den Radius r.
- * @author De Terminante, Beta, 11012345
+ * @author Döhring, Lasse, 1144184917
  * @author Bo, Harry, 11012346
  */
 

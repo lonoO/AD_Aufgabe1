@@ -35,18 +35,46 @@ public class Main {
         System.out.println("B:"+C);
         System.out.println("C"+C);
 
-
+        //Berechnung Distanz
         double abstand = A.distanceTo(B);
         System.out.println("Abstand:" + abstand);
-
-        boolean gleich = A.equalTo(B);
-        System.out.println("Gleich:"+ gleich);
 
         //Gleichheitsprüfung
         if(A.equalTo(B)||A.equalTo(C)||B.equalTo(C)){
             System.out.println("Fehler: Mindestens zwei Punkte sind gleich!");
             return;
         }
+
+        //Hilfskreise erzeugen K1-K3
+        Circle K1 = new Circle(A, A.distanceTo(B));
+        Circle K2 = new Circle(B, B.distanceTo(C));
+        Circle K3 = new Circle(C, C.distanceTo(A));
+
+        //Schnittlinien dieser Kreise Berechnen
+        Line l1 = K1.intersects(K2);  // Linie durch Schnittpunkte von K1 und K2
+        Line l2 = K2.intersects(K3);  // Linie durch Schnittpunkte von K2 und K3
+
+        //Prüfen, ob Linien parallel sind
+        if (l1 == null || l2 == null) {
+            System.out.println("Fehler: Hilfskreise schneiden sich nicht. Abbruch!");
+            return;
+        }
+
+        //Mittelpunkt des gesuchten Kreises Berechnen
+        Point mittelpunkt = l1.meets(l2);
+        if (mittelpunkt == null) {
+            System.out.println("Fehler: Schnittlinien sind parallel. Abbruch!");
+            return;
+        }
+
+        //Radius berechnen
+        double radius = mittelpunkt.distanceTo(A);
+
+        //Ausgabe
+        System.out.println("Gesuchter Kreis:");
+        System.out.println("Mittelpunkt: " + mittelpunkt);
+        System.out.println("Radius: " + radius);
+
         scanner.close();
 
 

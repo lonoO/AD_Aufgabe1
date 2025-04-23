@@ -23,11 +23,13 @@ class Circle {
 
     }
 
-    public double getRadius(){
+    public double getRadius() {
         return this.radius;
     }
 
-    public void setRadius(double r){this.radius = r;}
+    public void setRadius(double r) {
+        this.radius = r;
+    }
 
     public Line intersects(Circle pc) {
 
@@ -38,46 +40,29 @@ class Circle {
 
         double dx = m2.getX() - m1.getX();
         double dy = m2.getY() - m1.getY();
-        double d = Math.sqrt((dx*dx + dy*dy));
+        double d = Math.sqrt((dx * dx + dy * dy));
 
         //Prüfung ob Kreise sich schneiden
-        if(d > r1+r2 || d < Math.abs(r1-r2)){ return null;} //Keine Schnittpunkte
+        if (d > r1 + r2 || d < Math.abs(r1 - r2)) {
+            return null;
+        } //Keine Schnittpunkte
 
-    }
+        // Schnittpunkte berechnen
+        double a = (r1 * r1 - r2 * r2 + d * d) / (2 * d);
+        double h = Math.sqrt(r1 * r1 - a * a);
 
+        double px = m1.getX() + a * dx / d;
+        double py = m1.getY() + a * dy / d;
 
+        double sx1 = px + h * dy / d;
+        double sy1 = py - h * dx / d;
+        double sx2 = px - h * dy / d;
+        double sy2 = py + h * dx / d;
 
-    public String toString() {}
-}
+        Point S1 = new Point(sx1, sy1);
+        Point S2 = new Point(sx2, sy2);
 
-/** Klasse LINIE
- *
- */
-class Line {
-    private double A, B, C;
-
-    public Line(Point p1, Point p2) {
-
-    }
-
-    private void normalize() {
-
-    }
-
-    public Point meets(Line that) {
-
-    }
-
-    public double getA() {
-        return this.A;
-    }
-
-    public double getB() {
-        return this.B;
-    }
-
-    public double getC() {
-        return this.C;
+        return new Line(S1, S2);
     }
 
     @Override
@@ -85,7 +70,6 @@ class Line {
         return "Kreis(Mittelpunkt: " + middle + ", Radius: " + radius + ")";
     }
 
-
-
-
 }
+
+

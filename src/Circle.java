@@ -5,8 +5,7 @@
  * Datum: 04.05.2035
  * Version 1.0
  * Klasse "Circle" zur Darstellung eines Kreises durch den Mittelpunkt (x|y) und den Radius r.
- * @author Döhring, Lasse, 1144184917
- * @author Bo, Harry, 11012346
+
  */
 
 /** Klasse KREIS
